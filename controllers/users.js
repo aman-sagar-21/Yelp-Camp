@@ -1,10 +1,11 @@
 const User = require('../models/user');
+const Campground = require('../models/campground')
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
 }
 
-module.exports.register = async (req, res, next) => {
+module.exports.register = async(req, res, next) => {
     try {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
@@ -36,4 +37,12 @@ module.exports.logout = (req, res) => {
     // req.session.destroy();
     req.flash('success', "Goodbye!");
     res.redirect('/campgrounds');
+}
+
+module.exports.showProfile = async(req, res) => {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    const campgrounds = await Campground.find({ author: user });
+    console.log(campgrounds);
+    res.render('users/profile', { campgrounds, user });
 }

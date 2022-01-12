@@ -56,7 +56,7 @@ const store = new MongoDBStore({
     touchAfter: 24 * 60 * 60
 });
 
-store.on("error", function (e) {
+store.on("error", function(e) {
     console.log("SESSION STORE ERROR", e)
 })
 
@@ -115,7 +115,7 @@ app.use(
                 "'self'",
                 "blob:",
                 "data:",
-                "https://res.cloudinary.com/douqbebwk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://res.cloudinary.com/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
                 "https://images.unsplash.com",
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
